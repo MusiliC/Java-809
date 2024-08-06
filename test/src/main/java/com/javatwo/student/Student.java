@@ -126,7 +126,7 @@ public class Student {
     public static Student getRandomStudent(Course... courses){
         int maxYear = LocalDate.now().getYear() + 1;
 
-        Student student = new Student(getRandomVal("AU","KE", "UG", "US", "TZ", "UK", "EN"), random.nextInt(2015, maxYear), random.nextInt(18, 90) , getRandomVal("M", "F", "N/A"), random.nextBoolean(), courses);
+        Student student = new Student(getRandomVal("AU","KE", "UG", "US", "TZ", "UK", "EN"), random.nextInt(2015, maxYear), random.nextInt(18, 90) , getRandomVal("M", "F", "U"), random.nextBoolean(), courses);
 
         for (Course c : courses) {
             int lecture = random.nextInt(1, c.lectureCount());
