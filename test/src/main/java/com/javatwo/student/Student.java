@@ -19,7 +19,16 @@ public class Student {
 
     private final int yearEnrolled;
 
+    public int getAgeEnrolled() {
+        return ageEnrolled;
+    }
+
+    public boolean isProgrammingExperience() {
+        return programmingExperience;
+    }
+
     private final int ageEnrolled;
+    
     private final String gender;
 
 

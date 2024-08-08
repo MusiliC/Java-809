@@ -4,6 +4,7 @@ import java.sql.Array;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.javatwo.studentengagement.Course;
@@ -41,7 +42,50 @@ public class Main {
             long cnt = myStudents.count();
             total += cnt;
 
-            
+            System.out.printf("# of students (%s) = %d%n",
+            i == 0 ? " <30" : ">= 30 & < 60", cnt);
         }
+        System.out.println("# of students >= 60 = " + (students
+        .length - total));
+
+        var ageStream = Arrays.stream(students)
+        .mapToInt(Student::getAge);
+
+        System.out.println("Stats for enrollment age = " + ageStream.summaryStatistics());
+
+        Arrays.stream(students)
+        .map(Student::getCountryCode)
+        .distinct()
+        .sorted()
+        .forEach(s -> System.out.println(s + " "));
+
+        System.out.println();
+
+        System.out.println("long term students");
+
+       long longTermStudentCount = Arrays.stream(students)
+        .filter(s -> (s.getAge() - s.getAgeEnrolled() >=7) && (s.getMonthsSinceActive() < 12))
+        .filter(s -> !s.hasProgrammingExperience())
+        .limit(5)
+        .count();
+       // .forEach(System.out::println);
+
+       System.out.println("long term students " + longTermStudentCount);
+
+       System.out.println();
+
+     var longTime =  Arrays.stream(students)
+        .filter(s -> (s.getAge() - s.getAgeEnrolled() >=7) && (s.getMonthsSinceActive() < 12))
+        .filter(s -> !s.hasProgrammingExperience())
+        .limit(5)
+        .toArray(size -> new Student[size]) ;       
+       // .forEach(System.out::println);
+
+       var learners =  Arrays.stream(students)
+       .filter(s -> (s.getAge() - s.getAgeEnrolled() >=7) && (s.getMonthsSinceActive() < 12))
+       .filter(s -> !s.hasProgrammingExperience())
+       .limit(5)
+       .collect(Collectors.toList()) ;   
+
     }
 }
