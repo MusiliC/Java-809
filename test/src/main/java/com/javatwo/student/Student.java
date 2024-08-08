@@ -49,7 +49,7 @@ public class Student {
         }
     }
 
-    private void addCourse(Course newCourse){
+    public void addCourse(Course newCourse){
         addCourse(newCourse, LocalDate.now());
     }
 
@@ -138,7 +138,7 @@ public class Student {
         Student student = new Student(getRandomVal("AU","KE", "UG", "US", "TZ", "UK", "EN"), random.nextInt(2015, maxYear), random.nextInt(18, 90) , getRandomVal("M", "F", "U"), random.nextBoolean(), courses);
 
         for (Course c : courses) {
-            int lecture = random.nextInt(1, c.lectureCount());
+            int lecture = random.nextInt(30, c.lectureCount());
             int year = random.nextInt(student.getYearEnrolled(), maxYear);
             int month = random.nextInt(1,13);
 
